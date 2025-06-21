@@ -1,0 +1,38 @@
+{
+  "name": "devcontainer-template",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+		"ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly,consistency=cached"
+  ],
+  "containerEnv": {
+    "TZ": "Asia/Tokyo"
+  },
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "workspaceFolder": "${localWorkspaceFolder}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+  "updateRemoteUserUID": true,
+  "runArgs": [
+    "--init",
+    "--network=host",
+    "--hostname=devcontainer-template",
+    "--name=devcontainer-template-dev",
+    "--env-file=${localWorkspaceFolder}/.devcontainer/.env"
+  ],
+  "postCreateCommand": ".devcontainer/init.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "seatonjiang.gitmoji-vscode"
+      ]
+    }
+  }
+}
