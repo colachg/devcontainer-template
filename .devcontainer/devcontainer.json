@@ -6,13 +6,17 @@
   "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
-		"ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+		"ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly,consistency=cached"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/claude-code,target=/home/vscode/.config/claude-code,type=bind"
+
   ],
   "containerEnv": {
-    "TZ": "Asia/Tokyo"
+    "TZ": "Asia/Tokyo",
+    "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock" // https://developer.1password.com/docs/ssh/agent/compatibility/#configure-ssh_auth_sock-globally-for-every-client
   },
   "remoteEnv": {
     "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
@@ -25,9 +29,12 @@
     "--network=host",
     "--hostname=devcontainer-template",
     "--name=devcontainer-template-dev",
-    "--env-file=${localWorkspaceFolder}/.devcontainer/.env"
+    "--env-file=${localWorkspaceFolder}/.devcontainer/.env",
+    "-v",
+    "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock"
   ],
   "postCreateCommand": ".devcontainer/init.sh",
+  "postStartCommand": ".devcontainer/start.sh",
   "customizations": {
     "vscode": {
       "extensions": [
