@@ -10,9 +10,9 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly,consistency=cached",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/claude-code,target=/home/vscode/.config/claude-code,type=bind"
-
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly,consistency=cached"
+    // if you have a local .config/claude-code folder, you can uncomment this line to mount it
+    //"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/claude-code,target=/home/vscode/.config/claude-code,type=bind,consistency=cached"
   ],
   "containerEnv": {
     "TZ": "Asia/Tokyo",
