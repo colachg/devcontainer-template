@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-# unset gpg.ssh.program to avoid error
-git config --global --unset gpg.ssh.program || true
+# This script runs on every container start.
+source ~/.zshrc
