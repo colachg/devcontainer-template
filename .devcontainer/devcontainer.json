@@ -4,46 +4,45 @@
     "dockerfile": "Dockerfile"
   },
   "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "seatonjiang.gitmoji-vscode",
+        "EditorConfig.EditorConfig"
+      ]
+    }
+  },
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
-		// "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
     "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/tmp/host.gitconfig,type=bind,readonly,consistency=cached",
-    "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind,consistency=cached"
+    "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind"
     // if you have a local .config/claude-code folder, you can uncomment this line to mount it
     //"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/claude-code,target=/home/vscode/.config/claude-code,type=bind,consistency=cached"
   ],
   "containerEnv": {
-    "TZ": "Asia/Tokyo"
-    // "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock" // https://developer.1password.com/docs/ssh/agent/compatibility/#configure-ssh_auth_sock-globally-for-every-client
+    "TZ": "Asia/Tokyo",
+    "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock" // https://developer.1password.com/docs/ssh/agent/compatibility/#configure-ssh_auth_sock-globally-for-every-client
   },
   "remoteEnv": {
     "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
   },
-  "workspaceFolder": "${localWorkspaceFolder}",
-  "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+  // "workspaceFolder": "${localWorkspaceFolder}",
+  // "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
   "updateRemoteUserUID": true,
   "runArgs": [
     "--init",
+    "--network=host",
     "--hostname=devcontainer-template",
     "--name=devcontainer-template-dev",
     "--env-file=${localWorkspaceFolder}/.devcontainer/.env"
   ],
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.profiles.linux": {
-    "zsh": {
-      "path": "/bin/zsh"
-    }
-  },
   "postCreateCommand": ".devcontainer/init.sh",
   "postStartCommand": ".devcontainer/start.sh",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "seatonjiang.gitmoji-vscode"
-      ]
-    }
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.env.osx": {
+    "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
   }
 }
