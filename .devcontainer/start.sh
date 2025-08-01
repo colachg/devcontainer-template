@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/bash
+set -e
 
 # set git config
 git config --global --unset-all gpg.ssh.program || true

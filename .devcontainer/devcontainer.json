@@ -9,11 +9,7 @@
       "extensions": [
         "seatonjiang.gitmoji-vscode",
         "EditorConfig.EditorConfig"
-      ],
-      "terminal.integrated.defaultProfile.osx": "zsh",
-      "terminal.integrated.env.osx": {
-        "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
-      }
+      ]
     }
   },
   "features": {
@@ -21,10 +17,11 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/tmp/host.gitconfig,type=bind,readonly,consistency=cached"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/tmp/host.gitconfig,type=bind,readonly,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
   ],
   "containerEnv": {
-    "TZ": "Asia/Tokyo",
+    "TZ": "Asia/Tokyo"
   },
   "runArgs": [
     "--init",
