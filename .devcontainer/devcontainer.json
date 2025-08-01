@@ -9,7 +9,11 @@
       "extensions": [
         "seatonjiang.gitmoji-vscode",
         "EditorConfig.EditorConfig"
-      ]
+      ],
+      "terminal.integrated.defaultProfile.osx": "zsh",
+      "terminal.integrated.env.osx": {
+        "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
+      }
     }
   },
   "features": {
@@ -17,32 +21,16 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/tmp/host.gitconfig,type=bind,readonly,consistency=cached",
-    "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind"
-    // if you have a local .config/claude-code folder, you can uncomment this line to mount it
-    //"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/claude-code,target=/home/vscode/.config/claude-code,type=bind,consistency=cached"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/tmp/host.gitconfig,type=bind,readonly,consistency=cached"
   ],
   "containerEnv": {
     "TZ": "Asia/Tokyo",
-    "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock" // https://developer.1password.com/docs/ssh/agent/compatibility/#configure-ssh_auth_sock-globally-for-every-client
   },
-  "remoteEnv": {
-    "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
-  },
-  // "workspaceFolder": "${localWorkspaceFolder}",
-  // "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
-  "updateRemoteUserUID": true,
   "runArgs": [
     "--init",
-    "--network=host",
-    "--hostname=devcontainer-template",
     "--name=devcontainer-template-dev",
     "--env-file=${localWorkspaceFolder}/.devcontainer/.env"
   ],
   "postCreateCommand": ".devcontainer/init.sh",
-  "postStartCommand": ".devcontainer/start.sh",
-  "terminal.integrated.defaultProfile.osx": "zsh",
-  "terminal.integrated.env.osx": {
-    "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
-  }
+  "postStartCommand": ".devcontainer/start.sh"
 }
