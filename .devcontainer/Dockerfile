@@ -16,3 +16,5 @@ RUN mkdir -p /workspace && chown vscode:vscode /workspace
 # Set environment variables
 ENV NODE_ENV=development
 ENV SHELL=/bin/zsh
+USER vscode
+WORKDIR /workspace
