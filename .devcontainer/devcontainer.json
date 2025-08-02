@@ -10,6 +10,13 @@
         "seatonjiang.gitmoji-vscode",
         "EditorConfig.EditorConfig"
       ]
+    },
+    "jetbrains": {
+      "backend": "IntelliJ",
+      "plugins": [
+        "com.jetbrains.ai-assistant",
+        "org.jetbrains.plugins.github"
+      ]
     }
   },
   "features": {
@@ -17,7 +24,8 @@
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+    "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind"
   ],
   "containerEnv": {
     "TZ": "Asia/Tokyo"
@@ -25,7 +33,7 @@
   "runArgs": [
     "--init",
     "--name=devcontainer-template-dev",
-    "--env-file=${localWorkspaceFolder}/.devcontainer/.env"
+    "--env-file=${localWorkspaceFolder}/.devcontainer/.env.example"
   ],
   "postCreateCommand": ".devcontainer/init.sh",
   "postStartCommand": ".devcontainer/start.sh"

@@ -3,7 +3,9 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 # Install essential packages
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update -qyy && \
+    apt upgrade -qyy && \
     apt install -qyy vim \
+    && apt auto-remove -yqq \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 

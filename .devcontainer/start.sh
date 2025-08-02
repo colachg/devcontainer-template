@@ -1,9 +1,3 @@
-#!/bin/bash
-set -e
-
-# set git config
-git config --global --unset-all gpg.ssh.program || true
-git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers || true
-
+#!/bin/zsh
 # This script runs on every container start.
 source ~/.zshrc
