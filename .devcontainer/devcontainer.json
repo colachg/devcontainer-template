@@ -10,22 +10,15 @@
         "seatonjiang.gitmoji-vscode",
         "EditorConfig.EditorConfig"
       ]
-    },
-    "jetbrains": {
-      "backend": "IntelliJ",
-      "plugins": [
-        "com.jetbrains.ai-assistant",
-        "org.jetbrains.plugins.github"
-      ]
     }
   },
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+    "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
-    "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
   ],
   "containerEnv": {
     "TZ": "Asia/Tokyo"

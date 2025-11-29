@@ -2,10 +2,10 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
 # Install essential packages
 RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt update -qyy && \
-    apt upgrade -qyy && \
-    apt install -qyy vim \
-    && apt auto-remove -yqq \
+    apt-get update -qyy && \
+    apt-get upgrade -qyy && \
+    apt-get install -qyy vim \
+    && apt-get auto-remove -yqq \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
@@ -17,6 +17,5 @@ RUN mkdir -p /workspace && chown vscode:vscode /workspace
 
 # Set environment variables
 ENV NODE_ENV=development
-ENV SHELL=/bin/zsh
 USER vscode
 WORKDIR /workspace
