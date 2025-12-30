@@ -4,30 +4,23 @@
     "dockerfile": "Dockerfile"
   },
   "remoteUser": "vscode",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "seatonjiang.gitmoji-vscode",
-        "EditorConfig.EditorConfig"
-      ]
-    }
-  },
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
     "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+    "source=${localEnv:HOME}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
   ],
   "containerEnv": {
     "TZ": "Asia/Tokyo"
   },
-  "runArgs": [
-    "--init",
-    "--name=devcontainer-template-dev",
-    "--env-file=${localWorkspaceFolder}/.devcontainer/.env.example"
-  ],
-  "postCreateCommand": ".devcontainer/init.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig"
+      ]
+    }
+  },
   "postStartCommand": ".devcontainer/start.sh"
 }

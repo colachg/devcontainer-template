@@ -1,2 +1,8 @@
 .idea/
 .cursor/
+
+# Environment files (may contain secrets)
+.devcontainer/.env
+.env
+.env.local
+.env.*.local
